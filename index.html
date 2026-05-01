@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animeverse</title>
+
+<style>
+:root{
+  --glow:#7c7cff;
+  --glow2:#b96cff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Segoe UI,Arial,sans-serif;
+  color:#eaeaff;
+  background: linear-gradient(135deg,#050014,#12002a,#050014);
+  background-size:300% 300%;
+  animation:bgMove 14s ease infinite;
+  overflow-x:hidden;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* PARTICLES */
+.p{
+  position:fixed;
+  width:4px;height:4px;
+  background:rgba(160,160,255,.8);
+  border-radius:50%;
+  animation:rise linear infinite;
+  pointer-events:none;
+}
+@keyframes rise{
+  from{transform:translateY(110vh);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+
+/* TITLE */
+h1{
+  text-align:center;
+  padding:18px 10px 10px;
+  font-size:22px;
+  letter-spacing:1px;
+  background: linear-gradient(90deg,var(--glow),var(--glow2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 15px rgba(150,150,255,.6);
+  animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(-10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.container{
+  padding:14px;
+  animation:fadeIn 1.2s ease;
+}
+
+/* PREMIUM GLASS BUTTON */
+.btn{
+  display:block;
+  text-decoration:none;
+  color:#eaeaff;
+  border-radius:18px;
+  padding:15px;
+  margin:12px 0;
+  text-align:center;
+  font-size:16px;
+  background:rgba(20,10,60,.45);
+  backdrop-filter: blur(14px);
+  border:1px solid rgba(160,160,255,.45);
+  box-shadow:
+    0 0 14px rgba(160,160,255,.35),
+    inset 0 0 12px rgba(160,160,255,.15);
+  transition:.25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+/* LIGHT SWEEP */
+.btn::before{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+  transform:rotate(25deg);
+  animation:sweep 6s linear infinite;
+}
+@keyframes sweep{
+  from{transform:translateX(-100%) rotate(25deg)}
+  to{transform:translateX(100%) rotate(25deg)}
+}
+
+.btn:hover{
+  background:rgba(120,120,255,.18);
+  box-shadow:0 0 20px var(--glow),0 0 45px rgba(185,108,255,.6);
+  transform:scale(1.05);
+}
+
+.btn:active{
+  transform:scale(.94);
+  box-shadow: inset 0 0 18px #000;
+}
+
+/* FLOAT */
+.btn{ animation:float 5s ease-in-out infinite }
+.btn:nth-child(even){ animation-delay:1.5s }
+.btn:nth-child(odd){ animation-delay:3s }
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+</style>
+</head>
+
+<body>
+
+<h1>✨ Hentai Verse</h1>
+
+<a class="btn" href="https://hanime.tv/home">Hanime TV</a>
+<a class="btn" href="https://hentaicity.com/">Hentai City</a>
+<a class="btn" href="https://hentaihaven.xxx/">Hentai Haven</a>
+<a class="btn" href="https://hentaiplay.net/">Hentai Play</a>
+<a class="btn" href="https://hentaimama.io/">Hentai Mama</a>
+</div>
+
+<script>
+/* PARTICLES */
+for(let i=0;i<40;i++){
+ let p=document.createElement("div");
+ p.className="p";
+ p.style.left=Math.random()*100+"vw";
+ p.style.animationDuration=(6+Math.random()*7)+"s";
+ p.style.opacity=Math.random();
+ p.style.width=p.style.height=(2+Math.random()*4)+"px";
+ document.body.appendChild(p);
+}
+</script>
+
+</body>
+
+</html>
+
+
