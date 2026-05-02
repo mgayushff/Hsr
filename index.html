@@ -7,8 +7,8 @@
 
 <style>
 :root{
-  --glow:#7c7cff;
-  --glow2:#b96cff;
+  --glow:#ff4dff;
+  --glow2:#7c7cff;
 }
 
 *{box-sizing:border-box}
@@ -24,20 +24,78 @@ body{
   overflow-x:hidden;
 }
 
+/* BACKGROUND ANIMATION */
 @keyframes bgMove{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
+/* LOADER */
+#loader{
+  position:fixed;
+  inset:0;
+  background:radial-gradient(circle,#14002f,#050014);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.loader-box{
+  text-align:center;
+  position:relative;
+}
+
+.ring,.ring2{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  position:absolute;
+  border:2px solid transparent;
+}
+
+.ring{
+  border-top:2px solid #ff4dff;
+  border-left:2px solid #7c7cff;
+  animation:spin 1.2s linear infinite;
+  box-shadow:0 0 25px #ff4dff;
+}
+
+.ring2{
+  border-bottom:2px solid #ff80ff;
+  border-right:2px solid #7c7cff;
+  animation:spinReverse 1.5s linear infinite;
+  box-shadow:0 0 35px #b96cff;
+}
+
+.loader-text{
+  margin-top:130px;
+  font-size:18px;
+  letter-spacing:2px;
+  background: linear-gradient(90deg,#ff4dff,#7c7cff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 15px rgba(255,100,255,.7);
+  animation:pulse 1.5s ease-in-out infinite;
+}
+
+/* ANIMATIONS */
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes spinReverse{to{transform:rotate(-360deg)}}
+
+@keyframes pulse{
+  0%,100%{opacity:.6; transform:scale(1)}
+  50%{opacity:1; transform:scale(1.15)}
+}
+
 /* PARTICLES */
 .p{
   position:fixed;
   width:4px;height:4px;
-  background:rgba(160,160,255,.8);
+  background:rgba(255,100,255,.7);
   border-radius:50%;
   animation:rise linear infinite;
-  pointer-events:none;
 }
 @keyframes rise{
   from{transform:translateY(110vh);opacity:0}
@@ -48,70 +106,61 @@ body{
 /* TITLE */
 h1{
   text-align:center;
-  padding:18px 10px 10px;
+  padding:18px;
   font-size:22px;
-  letter-spacing:1px;
   background: linear-gradient(90deg,var(--glow),var(--glow2));
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
-  text-shadow:0 0 15px rgba(150,150,255,.6);
-  animation:fadeIn .8s ease;
+  text-shadow:0 0 20px rgba(255,100,255,.7);
 }
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(-10px)}
-  to{opacity:1;transform:translateY(0)}
-}
+/* BUTTONS */
+.container{padding:14px}
 
-.container{
-  padding:14px;
-  animation:fadeIn 1.2s ease;
-}
-
-/* PREMIUM GLASS BUTTON */
 .btn{
   display:block;
   text-decoration:none;
-  color:#eaeaff;
-  border-radius:18px;
-  padding:15px;
-  margin:12px 0;
+  color:#fff;
+  border-radius:20px;
+  padding:16px;
+  margin:14px 0;
   text-align:center;
   font-size:16px;
-  background:rgba(20,10,60,.45);
-  backdrop-filter: blur(14px);
-  border:1px solid rgba(160,160,255,.45);
+  background:rgba(20,10,60,.5);
+  backdrop-filter: blur(16px);
+  border:1px solid rgba(255,100,255,.5);
   box-shadow:
-    0 0 14px rgba(160,160,255,.35),
-    inset 0 0 12px rgba(160,160,255,.15);
-  transition:.25s ease;
+    0 0 20px rgba(255,100,255,.3),
+    inset 0 0 15px rgba(255,100,255,.2);
   position:relative;
   overflow:hidden;
+  transition:.3s;
 }
 
-/* LIGHT SWEEP */
+/* SHIMMER */
 .btn::before{
   content:"";
   position:absolute;
   inset:-60%;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
-  transform:rotate(25deg);
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,.4),transparent);
   animation:sweep 6s linear infinite;
 }
+
 @keyframes sweep{
   from{transform:translateX(-100%) rotate(25deg)}
   to{transform:translateX(100%) rotate(25deg)}
 }
 
+/* HOVER EFFECT */
 .btn:hover{
-  background:rgba(120,120,255,.18);
-  box-shadow:0 0 20px var(--glow),0 0 45px rgba(185,108,255,.6);
-  transform:scale(1.05);
+  transform:scale(1.06);
+  box-shadow:0 0 35px #ff4dff,0 0 60px #7c7cff;
 }
 
+/* CLICK EFFECT */
 .btn:active{
-  transform:scale(.94);
-  box-shadow: inset 0 0 18px #000;
+  transform:scale(.92);
+  box-shadow: inset 0 0 25px #000;
 }
 
 /* FLOAT */
@@ -121,15 +170,25 @@ h1{
 
 @keyframes float{
   0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-5px)}
+  50%{transform:translateY(-6px)}
 }
 </style>
 </head>
 
 <body>
 
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-box">
+    <div class="ring"></div>
+    <div class="ring2"></div>
+    <div class="loader-text">Entering Fantasy...</div>
+  </div>
+</div>
+
 <h1>✨ Hentai Verse</h1>
 
+<div class="container">
 <a class="btn" href="https://hanime.tv/home">Hanime TV</a>
 <a class="btn" href="https://hentaicity.com/">Hentai City</a>
 <a class="btn" href="https://hentaihaven.xxx/">Hentai Haven</a>
@@ -140,6 +199,16 @@ h1{
 </div>
 
 <script>
+/* LOADER FADE */
+window.addEventListener("load",()=>{
+  setTimeout(()=>{
+    let l=document.getElementById("loader");
+    l.style.opacity="0";
+    l.style.transition="0.6s";
+    setTimeout(()=>{l.style.display="none"},600);
+  },2200);
+});
+
 /* PARTICLES */
 for(let i=0;i<40;i++){
  let p=document.createElement("div");
@@ -153,7 +222,4 @@ for(let i=0;i<40;i++){
 </script>
 
 </body>
-
 </html>
-
-
